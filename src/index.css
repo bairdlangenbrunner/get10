@@ -1,0 +1,187 @@
+:root {
+  --bg-dark: #002b36; /*solarized darkest */
+  --bg-light: #fdf6e3;
+  --button-default: #2aa198;
+  /* --button-active: #cb4b16; */
+  --button-active: #6c71c4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+h1 {
+  /* color: var(--button-default); */
+  /* opacity: 0.5; */
+  font-size: 3rem;
+  font-weight: 900;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--button-default);
+}
+
+h2 {
+  color: var(--button-default);
+  /* opacity: 0.5; */
+  font-size: 0.8rem;
+  padding: 0px 20px;
+}
+
+.title-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* background-color: white; */
+}
+
+p {
+  color: var(--button-default);
+  opacity: 0.5;
+  font-size: 0.8rem;
+  padding: 0px 20px;
+}
+
+div#root {
+  height: 100%;
+  width: 100%;
+  max-height: 350px;
+  min-height: 350px;
+  max-width: 400px;
+}
+
+body {
+  background-color: var(--bg-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* width: 100vw; */
+  padding: 125px 100px;
+}
+
+main {
+  /* border-radius: 20px; */
+  height: 100%;
+  /* background-color: var(--bg-dark); */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 250px;
+}
+
+.die-div {
+  display: grid;
+  grid-template: auto auto / repeat(5, 1fr);
+  gap: 20px;
+  padding: 25px 0px;
+  position: relative;
+}
+
+.die {
+  color: var(--bg-dark);
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+  font-size: 2rem;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  border: none;
+  background-color: var(--bg-light);
+  font-weight: bold;
+}
+
+.die:active {
+  background-color: var(--bg-light);
+}
+
+.die-hold {
+  background-color: var(--button-active);
+}
+
+button {
+  cursor: pointer;
+}
+
+.roll-button {
+  border: none;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  background-color: var(--button-default);
+  font-size: 1.5rem;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: var(--bg-light);
+}
+
+.restart-button {
+  border: none;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  background-color: var(--button-default);
+  /* opacity: 0.6; */
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: var(--bg-light);
+}
+
+button:active {
+  background-color: var(--button-active);
+}
+
+.win-popup-text {
+  font-size: 0.9rem;
+  background-color: var(--bg-dark);
+  color: #cb4b16;
+  padding: 30px;
+  /* color: var(--button-default); */
+  opacity: 0.85;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 25px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  main {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0px;
+    justify-content: start;
+    gap: 25px;
+    padding-top: 75px;
+  }
+  body {
+    padding: 0;
+    display: block;
+    /* }
+  .die-div {
+    gap: 12px;
+  }
+  .die {
+    height: 55px;
+    width: 55px;
+    font-size: 3rem;
+  }
+  .roll-button {
+    padding: 8px 18px;
+    font-size: 2rem;
+  } */
+  }
+}
