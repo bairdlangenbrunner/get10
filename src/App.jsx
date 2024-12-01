@@ -13,6 +13,17 @@ function App() {
   const [gameWon, setGameWon] = useState(false);
   const [dice, setDice] = useState(generateNewDiceObjects());
 
+  // high scores
+  // const [highScores, setHighScores] = useState([
+  //   { name: "someone", time: 13.02, rolls: 12 },
+  //   { name: "Baird", time: 17.62, rolls: 19 },
+  //   { name: "braid", time: 18.09, rolls: 18 },
+  // ]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("highScores", JSON.stringify(highScores));
+  // }, []);
+
   // check if the game is won whenever dice changes
   useEffect(() => {
     const allHeld = dice.every((die) => die.hold);
@@ -57,8 +68,7 @@ function App() {
         )
       );
     } else {
-      setDice(generateNewDiceObjects());
-      setRollCount(1);
+      handleRestart()
     }
   }
 
