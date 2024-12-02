@@ -105,6 +105,10 @@ main {
   background-color: var(--bg-light);
 }
 
+.die:disabled {
+  background-color: var(--button-active);
+}
+
 .die-hold {
   background-color: var(--button-active);
 }

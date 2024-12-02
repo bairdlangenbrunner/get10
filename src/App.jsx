@@ -31,13 +31,17 @@ function App() {
   useEffect(() => {
     if (gameWon && startTime) {
       setElapsedTime(((new Date() - startTime) / 1000).toFixed(2));
+      const rollButton = document.querySelector(".roll-button");
+      rollButton.focus();
+      const dieList = document.querySelectorAll('.die')
+      // dieList.map(className)
     }
   }, [dice, gameWon, startTime]);
 
   function generateNewDiceObjects() {
     return new Array(10).fill(null).map(() => ({
       id: crypto.randomUUID(),
-      number: Math.ceil(Math.random() * 6),
+      number: 5, //Math.ceil(Math.random() * 6),
       hold: false,
     }));
   }
@@ -88,6 +92,7 @@ function App() {
       value={die.number}
       handleClick={() => handleDieClick(die.id)}
       hold={die.hold}
+      gameWon={gameWon}
     />
   ));
 
@@ -129,7 +134,7 @@ function App() {
         </button>
 
         <button
-          className={`restart-button ${gameWon ? 'visibility-hidden' : ''}`}
+          className={`restart-button ${gameWon ? "visibility-hidden" : ""}`}
           onClick={handleRestart}
         >
           restart
