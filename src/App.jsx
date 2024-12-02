@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Die from "./components/Die";
 import ReactConfetti from "react-confetti";
 
@@ -11,6 +11,8 @@ function App() {
   // roll, win, dice states
   const [rollCount, setRollCount] = useState(1);
   const [dice, setDice] = useState(() => generateNewDiceObjects());
+
+  const rollButtonRef = useRef();
 
   // high scores
   // const [highScores, setHighScores] = useState([
@@ -31,9 +33,8 @@ function App() {
   useEffect(() => {
     if (gameWon && startTime) {
       setElapsedTime(((new Date() - startTime) / 1000).toFixed(2));
-      const rollButton = document.querySelector(".roll-button");
-      rollButton.focus();
-      const dieList = document.querySelectorAll('.die')
+      rollButtonRef.current.focus()
+      //const dieList = document.querySelectorAll('.die')
       // dieList.map(className)
     }
   }, [dice, gameWon, startTime]);
@@ -129,7 +130,11 @@ function App() {
             </div>
           )}
         </div>
-        <button className="roll-button" onClick={handleRoll}>
+        <button
+          ref={rollButtonRef}
+          className="roll-button"
+          onClick={handleRoll}
+        >
           {gameWon ? "restart game" : "roll dice"}
         </button>
 
