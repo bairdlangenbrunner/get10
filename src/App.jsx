@@ -10,7 +10,7 @@ function App() {
 
   // roll, win, dice states
   const [rollCount, setRollCount] = useState(1);
-  const [dice, setDice] = useState(generateNewDiceObjects());
+  const [dice, setDice] = useState(() => generateNewDiceObjects());
 
   // high scores
   // const [highScores, setHighScores] = useState([
