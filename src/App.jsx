@@ -105,9 +105,9 @@ function App() {
             height={window.innerHeight}
           />
         )}
-        <div aria-live="polite" className="sr-only">
+        {/* <div aria-live="polite" className="sr-only">
           {gameWon && <p>you win! roll dice or press start to play again</p>}
-        </div>
+        </div> */}
         <p className="instructions">
           <span style={{ fontWeight: "bold" }}>instructions:</span> roll until
           all dice are the same; click each die to freeze it as you progress
