@@ -105,6 +105,10 @@ main {
   background-color: var(--bg-light);
 }
 
+.die:disabled {
+  background-color: var(--button-active);
+}
+
 .die-hold {
   background-color: var(--button-active);
 }
@@ -121,6 +125,8 @@ button {
   padding: 5px 10px;
   border-radius: 10px;
   color: var(--bg-light);
+  white-space: nowrap;
+  width: auto;
 }
 
 .restart-button {
@@ -132,6 +138,7 @@ button {
   padding: 5px 10px;
   border-radius: 10px;
   color: var(--bg-light);
+  margin-top: 80px;
 }
 
 button:active {
@@ -153,7 +160,7 @@ button:active {
   border-radius: 25px;
 }
 
-.sr-only {
+/* .sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -163,6 +170,10 @@ button:active {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+} */
+
+.visibility-hidden {
+  visibility: hidden
 }
 
 @media (max-width: 600px) {

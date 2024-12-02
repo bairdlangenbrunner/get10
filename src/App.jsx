@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Die from "./components/Die";
 import ReactConfetti from "react-confetti";
 
@@ -10,8 +10,9 @@ function App() {
 
   // roll, win, dice states
   const [rollCount, setRollCount] = useState(1);
-  const [gameWon, setGameWon] = useState(false);
-  const [dice, setDice] = useState(generateNewDiceObjects());
+  const [dice, setDice] = useState(() => generateNewDiceObjects());
+
+  const rollButtonRef = useRef();
 
   // high scores
   // const [highScores, setHighScores] = useState([
@@ -24,14 +25,17 @@ function App() {
   //   localStorage.setItem("highScores", JSON.stringify(highScores));
   // }, []);
 
+  const gameWon =
+    dice.every((die) => die.hold) &&
+    dice.every((die) => die.number === dice[0].number);
   // check if the game is won whenever dice changes
-  useEffect(() => {
-    const allHeld = dice.every((die) => die.hold);
-    const allSameNumber = dice.every((die) => die.number === dice[0].number);
 
-    if (allHeld && allSameNumber) {
-      setGameWon(true);
+  useEffect(() => {
+    if (gameWon && startTime) {
       setElapsedTime(((new Date() - startTime) / 1000).toFixed(2));
+      rollButtonRef.current.focus()
+      //const dieList = document.querySelectorAll('.die')
+      // dieList.map(className)
     }
   }, [dice, gameWon, startTime]);
 
@@ -51,11 +55,7 @@ function App() {
       setStartTime(new Date());
     }
     setDice((prevDice) =>
-      prevDice.map((die) => (
-        die.id === id 
-        ? { ...die, hold: !die.hold } 
-        : die
-      ))
+      prevDice.map((die) => (die.id === id ? { ...die, hold: !die.hold } : die))
     );
   }
   // console.log(startTime)
@@ -80,7 +80,7 @@ function App() {
   function handleRestart() {
     setDice(generateNewDiceObjects());
     setRollCount(1);
-    setGameWon(false);
+    // setGameWon(false);
     setGameIsStarted(false);
     setStartTime(null);
     setElapsedTime(null);
@@ -93,6 +93,7 @@ function App() {
       value={die.number}
       handleClick={() => handleDieClick(die.id)}
       hold={die.hold}
+      gameWon={gameWon}
     />
   ));
 
@@ -110,10 +111,13 @@ function App() {
             height={window.innerHeight}
           />
         )}
-        <div aria-live="polite" className="sr-only">
+        {/* <div aria-live="polite" className="sr-only">
           {gameWon && <p>you win! roll dice or press start to play again</p>}
-        </div>
-        <p className="instructions"><span style={{fontWeight: 'bold'}}>instructions:</span> roll until all dice are the same; click each die to freeze it as you progress</p>
+        </div> */}
+        <p className="instructions">
+          <span style={{ fontWeight: "bold" }}>instructions:</span> roll until
+          all dice are the same; click each die to freeze it as you progress
+        </p>
         <div className="die-div">
           {diceElements}
           {gameWon && (
@@ -126,11 +130,18 @@ function App() {
             </div>
           )}
         </div>
-        <button className="roll-button" onClick={handleRoll}>
-          roll dice
+        <button
+          ref={rollButtonRef}
+          className="roll-button"
+          onClick={handleRoll}
+        >
+          {gameWon ? "restart game" : "roll dice"}
         </button>
 
-        <button className="restart-button" onClick={handleRestart}>
+        <button
+          className={`restart-button ${gameWon ? "visibility-hidden" : ""}`}
+          onClick={handleRestart}
+        >
           restart
         </button>
       </main>
