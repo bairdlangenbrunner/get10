@@ -32,7 +32,7 @@ function App() {
     if (gameWon && startTime) {
       setElapsedTime(((new Date() - startTime) / 1000).toFixed(2));
     }
-  }, [dice, startTime]);
+  }, [dice, gameWon, startTime]);
 
   function generateNewDiceObjects() {
     return new Array(10).fill(null).map(() => ({
