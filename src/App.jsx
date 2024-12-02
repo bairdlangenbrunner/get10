@@ -51,14 +51,18 @@ function App() {
       setStartTime(new Date());
     }
     setDice((prevDice) =>
-      prevDice.map((die) => (die.id === id ? { ...die, hold: !die.hold } : die))
+      prevDice.map((die) => (
+        die.id === id 
+        ? { ...die, hold: !die.hold } 
+        : die
+      ))
     );
   }
   // console.log(startTime)
 
   // roll the die
   // only change the ones that have hold=false
-  // if the game has been one, roll dice button restarts it
+  // if the game has been won, roll dice button restarts it
   function handleRoll() {
     setRollCount((prevCount) => prevCount + 1);
     if (!gameWon) {
@@ -68,7 +72,7 @@ function App() {
         )
       );
     } else {
-      handleRestart()
+      handleRestart();
     }
   }
 
@@ -109,7 +113,7 @@ function App() {
         <div aria-live="polite" className="sr-only">
           {gameWon && <p>you win! roll dice or press start to play again</p>}
         </div>
-        {/* <p>a ripoff of Tenzies, but you're playing by yourself; try to get all 10 in as few rolls as possible (less than 10 rolls is pretty good)</p> */}
+        <p className="instructions"><span style={{fontWeight: 'bold'}}>instructions:</span> roll until all dice are the same; click each die to freeze it as you progress</p>
         <div className="die-div">
           {diceElements}
           {gameWon && (
