@@ -10,7 +10,6 @@ function App() {
 
   // roll, win, dice states
   const [rollCount, setRollCount] = useState(1);
-  const [gameWon, setGameWon] = useState(false);
   const [dice, setDice] = useState(generateNewDiceObjects());
 
   // high scores
@@ -24,16 +23,16 @@ function App() {
   //   localStorage.setItem("highScores", JSON.stringify(highScores));
   // }, []);
 
+  const gameWon =
+    dice.every((die) => die.hold) &&
+    dice.every((die) => die.number === dice[0].number);
   // check if the game is won whenever dice changes
-  useEffect(() => {
-    const allHeld = dice.every((die) => die.hold);
-    const allSameNumber = dice.every((die) => die.number === dice[0].number);
 
-    if (allHeld && allSameNumber) {
-      setGameWon(true);
+  useEffect(() => {
+    if (gameWon && startTime) {
       setElapsedTime(((new Date() - startTime) / 1000).toFixed(2));
     }
-  }, [dice, gameWon, startTime]);
+  }, [dice, startTime]);
 
   function generateNewDiceObjects() {
     return new Array(10).fill(null).map(() => ({
