@@ -125,10 +125,13 @@ function App() {
           )}
         </div>
         <button className="roll-button" onClick={handleRoll}>
-          roll dice
+          {gameWon ? "restart game" : "roll dice"}
         </button>
 
-        <button className="restart-button" onClick={handleRestart}>
+        <button
+          className={`restart-button ${gameWon ? "visibility-hidden" : ""}`}
+          onClick={handleRestart}
+        >
           restart
         </button>
       </main>
