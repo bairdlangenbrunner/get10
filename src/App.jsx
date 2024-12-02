@@ -75,7 +75,7 @@ function App() {
   function handleRestart() {
     setDice(generateNewDiceObjects());
     setRollCount(1);
-    setGameWon(false);
+    // setGameWon(false);
     setGameIsStarted(false);
     setStartTime(null);
     setElapsedTime(null);
