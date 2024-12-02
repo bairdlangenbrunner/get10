@@ -42,7 +42,7 @@ function App() {
   function generateNewDiceObjects() {
     return new Array(10).fill(null).map(() => ({
       id: crypto.randomUUID(),
-      number: 5, //Math.ceil(Math.random() * 6),
+      number: Math.ceil(Math.random() * 6),
       hold: false,
     }));
   }
