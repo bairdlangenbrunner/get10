@@ -51,11 +51,7 @@ function App() {
       setStartTime(new Date());
     }
     setDice((prevDice) =>
-      prevDice.map((die) => (
-        die.id === id 
-        ? { ...die, hold: !die.hold } 
-        : die
-      ))
+      prevDice.map((die) => (die.id === id ? { ...die, hold: !die.hold } : die))
     );
   }
   // console.log(startTime)
@@ -113,7 +109,10 @@ function App() {
         <div aria-live="polite" className="sr-only">
           {gameWon && <p>you win! roll dice or press start to play again</p>}
         </div>
-        <p className="instructions"><span style={{fontWeight: 'bold'}}>instructions:</span> roll until all dice are the same; click each die to freeze it as you progress</p>
+        <p className="instructions">
+          <span style={{ fontWeight: "bold" }}>instructions:</span> roll until
+          all dice are the same; click each die to freeze it as you progress
+        </p>
         <div className="die-div">
           {diceElements}
           {gameWon && (
