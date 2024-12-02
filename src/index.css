@@ -121,6 +121,8 @@ button {
   padding: 5px 10px;
   border-radius: 10px;
   color: var(--bg-light);
+  white-space: nowrap;
+  width: auto;
 }
 
 .restart-button {
@@ -132,7 +134,7 @@ button {
   padding: 5px 10px;
   border-radius: 10px;
   color: var(--bg-light);
-  margin-top: 20px;
+  margin-top: 80px;
 }
 
 button:active {

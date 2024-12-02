@@ -129,7 +129,7 @@ function App() {
         </button>
 
         <button
-          className={`restart-button ${gameWon ? "visibility-hidden" : ""}`}
+          className={`restart-button ${gameWon ? 'visibility-hidden' : ''}`}
           onClick={handleRestart}
         >
           restart
